@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://dh3wqobjvmbnx"]
+
+[ext_resource type="Script" uid="uid://dbi3no6iu4obs" path="res://triangle/triangle.gd" id="1_qm4uf"]
+[ext_resource type="Texture2D" uid="uid://bwmjeekespjuf" path="res://triangle/enemy5.png" id="2_qm4uf"]
+[ext_resource type="Script" uid="uid://ddbthehlym5us" path="res://enemies/aaa.gd" id="3_qm4uf"]
+[ext_resource type="AudioStream" uid="uid://gsyyyrapomvs" path="res://triangle/triangleshoot.wav" id="4_8ucxa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j88b8"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eg05s"]
+radius = 32.0
+
+[node name="triangle" type="RigidBody2D"]
+collision_layer = 18
+collision_mask = 16
+mass = 0.001
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_qm4uf")
+
+[node name="sptsprt" type="Sprite2D" parent="."]
+texture = ExtResource("2_qm4uf")
+script = ExtResource("3_qm4uf")
+
+[node name="Timer" type="Timer" parent="sptsprt"]
+
+[node name="shoot" type="AudioStreamPlayer" parent="sptsprt"]
+stream = ExtResource("4_8ucxa")
+volume_db = -38.0
+
+[node name="sprtcol" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_j88b8")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Timer2" type="Timer" parent="."]
+
+[node name="hurtar" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="hurtcol" type="CollisionShape2D" parent="hurtar"]
+shape = SubResource("CircleShape2D_eg05s")
+
+[connection signal="body_entered" from="hurtar" to="." method="_on_hurtar_body_entered"]

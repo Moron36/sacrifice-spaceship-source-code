@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://7rqhx74a3d2"]
+
+[ext_resource type="Texture2D" uid="uid://dml47hryx1lax" path="res://upgrades/betterlasers.png" id="1_lgt2a"]
+[ext_resource type="Script" uid="uid://c8godffu31rv0" path="res://rids/rid_1.gd" id="1_xwglg"]
+
+[sub_resource type="Gradient" id="Gradient_sn06b"]
+colors = PackedColorArray(0.46873635, 0, 0.04543814, 1, 0.62934756, 0.05908777, 0.14571196, 0.52156866)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xwglg"]
+gradient = SubResource("Gradient_sn06b")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5u5oy"]
+font_size = 43
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fopq2"]
+font_size = 36
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[node name="sell" type="Sprite2D"]
+script = ExtResource("1_xwglg")
+
+[node name="back" type="Sprite2D" parent="."]
+position = Vector2(-3.0517578e-05, 64.00005)
+scale = Vector2(12, 20)
+texture = SubResource("GradientTexture2D_xwglg")
+
+[node name="Betterlasers" type="Sprite2D" parent="."]
+position = Vector2(0, -192)
+scale = Vector2(7.9999995, 7.999999)
+texture = ExtResource("1_lgt2a")
+
+[node name="title" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = -256.0
+anchor_top = 64.0
+anchor_right = 256.0
+anchor_bottom = 192.0
+text = "Unhonorable Fabrication"
+label_settings = SubResource("LabelSettings_5u5oy")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="desc" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = -256.0
+anchor_top = 192.0
+anchor_right = 256.0
+anchor_bottom = 640.0
+text = "Sacrifice damage
+
+-1 dmg"
+label_settings = SubResource("LabelSettings_fopq2")
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="btn" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = -384.0
+anchor_top = -576.0
+anchor_right = 384.0
+anchor_bottom = 704.0
+focus_mode = 0
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[connection signal="mouse_entered" from="btn" to="." method="_on_btn_mouse_entered"]
+[connection signal="mouse_exited" from="btn" to="." method="_on_btn_mouse_exited"]
+[connection signal="pressed" from="btn" to="." method="_on_btn_pressed"]

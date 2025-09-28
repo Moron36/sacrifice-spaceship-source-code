@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6qotiv25jwf"]
+
+[ext_resource type="Script" uid="uid://dcmwgd05gg1yj" path="res://crisscross/crisscross.gd" id="1_0ugqn"]
+[ext_resource type="Texture2D" uid="uid://bxkqeni47mj6e" path="res://crisscross/crisscross.png" id="2_0ugqn"]
+[ext_resource type="Script" uid="uid://bx71chbykg3wa" path="res://enemies/shoot2.gd" id="3_0ugqn"]
+[ext_resource type="AudioStream" uid="uid://dv67wirxv7a8r" path="res://crisscross/crissshoot.ogg" id="4_0ugqn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j88b8"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eg05s"]
+radius = 32.0
+
+[node name="crisscross" type="RigidBody2D"]
+collision_layer = 18
+collision_mask = 16
+mass = 0.001
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_0ugqn")
+
+[node name="sptsprt" type="Sprite2D" parent="."]
+texture = ExtResource("2_0ugqn")
+script = ExtResource("3_0ugqn")
+
+[node name="Timer" type="Timer" parent="sptsprt"]
+
+[node name="shoot" type="AudioStreamPlayer" parent="sptsprt"]
+stream = ExtResource("4_0ugqn")
+volume_db = -28.0
+
+[node name="sprtcol" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_j88b8")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Timer2" type="Timer" parent="."]
+
+[node name="hurtar" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="hurtcol" type="CollisionShape2D" parent="hurtar"]
+shape = SubResource("CircleShape2D_eg05s")
+
+[connection signal="body_entered" from="hurtar" to="." method="_on_hurtar_body_entered"]

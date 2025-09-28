@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dj6phgmqxju86"]
+
+[ext_resource type="Script" uid="uid://dh01d08450b5d" path="res://enemies/boom.gd" id="1_8hk63"]
+[ext_resource type="Texture2D" uid="uid://b0rfrbsl8ylwy" path="res://explosion/frame2.png" id="1_b1xau"]
+[ext_resource type="Texture2D" uid="uid://uxbtsjtu4rwf" path="res://explosion/frame1.png" id="2_8hk63"]
+[ext_resource type="AudioStream" uid="uid://3wd564gqkojd" path="res://explosion/explosion.ogg" id="4_nb1am"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nb1am"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_b1xau")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_8hk63")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pqosj"]
+radius = 192.66551
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_8hk63")
+
+[node name="explosion" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nb1am")
+frame = 1
+frame_progress = 0.16044204
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pqosj")
+
+[node name="eb" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_nb1am")
+volume_db = -31.0
+pitch_scale = 0.75
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
